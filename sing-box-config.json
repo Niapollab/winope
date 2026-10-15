@@ -1,0 +1,67 @@
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-server",
+        "type": "https",
+        "server": "1.1.1.1",
+        "server_port": 443,
+        "detour": "window"
+      },
+      {
+        "tag": "bootstrap-dns-server",
+        "type": "udp",
+        "server": "77.88.8.8",
+        "server_port": 53
+      }
+    ],
+    "rules": [],
+    "final": "dns-server",
+    "strategy": "prefer_ipv4"
+  },
+  "inbounds": [
+    {
+      "tag": "tun",
+      "type": "tun",
+      "interface_name": "winope",
+      "address": [
+        "172.19.0.1/30"
+      ],
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "system"
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "window",
+      // ...
+    },
+    {
+      "tag": "direct",
+      "type": "direct"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      }
+    ],
+    "final": "window",
+    "default_domain_resolver": "bootstrap-dns-server",
+    "auto_detect_interface": true
+  }
+}

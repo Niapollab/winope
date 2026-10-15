@@ -1,0 +1,8 @@
+[Network]
+NetworkName=winope
+Subnet=10.67.0.0/16
+Gateway=10.67.0.1
+DisableDNS=false
+
+[Install]
+WantedBy=default.target
