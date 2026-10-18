@@ -7,7 +7,7 @@ Wants=network-online.target
 ContainerName=winope
 Image=ghcr.io/sagernet/sing-box:v1.14.3
 
-Network=winope.network:ip=10.67.0.2
+Network=winope.network:ip=10.67.13.254
 
 AddCapability=CAP_NET_ADMIN
 AddCapability=CAP_NET_BIND_SERVICE

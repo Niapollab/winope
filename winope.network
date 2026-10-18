@@ -1,7 +1,7 @@
 [Network]
 NetworkName=winope
-Subnet=10.67.0.0/16
-Gateway=10.67.0.1
+Subnet=10.67.13.252/30
+Gateway=10.67.13.253
 DisableDNS=false
 
 [Install]
