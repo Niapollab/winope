@@ -35,13 +35,13 @@ podman run -it --rm --network container:winope docker.io/library/alpine:latest w
 ```
 
 ### 📦 From a Quadlet (`.container`)
-Just add `Network=container:winope`:
+Just set `Network=container:winope` and bind the lifecycle with `BindsTo=winope.service` (this ensures the dependent container cleanly shuts down before `winope`, avoiding `container ... has dependent containers which must be removed before it` errors):
 
 ```ini
 [Unit]
 Description=My App
 After=winope.service
-Wants=winope.service
+BindsTo=winope.service
 
 [Container]
 ContainerName=my-app
@@ -52,3 +52,13 @@ Exec=sleep infinity
 [Install]
 WantedBy=default.target
 ```
+
+> [!TIP]
+> **Graceful Stop Ordering & Auto-Start**:
+> In addition to `BindsTo=winope.service` on client containers, list client services in `winope.container` under `[Unit]`:
+> ```ini
+> Wants=my-app.service ...
+> Before=my-app.service ...
+> ```
+> - `Wants=`: Starts client containers automatically whenever `winope` starts.
+> - `Before=`: Ensures systemd stops clients before stopping or recreating `winope`.
