@@ -1,8 +1,14 @@
 [Network]
 NetworkName=winope
-Subnet=10.67.13.252/30
-Gateway=10.67.13.253
-DisableDNS=false
+
+Subnet=10.67.0.0/16
+IPRange=10.67.128.0/17
+Gateway=10.67.0.1
+
+DNS=1.1.1.1
+
+Options=no_default_route=true
+PodmanArgs=--route 0.0.0.0/0,10.67.0.2
 
 [Install]
 WantedBy=default.target

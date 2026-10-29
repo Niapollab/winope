@@ -13,15 +13,35 @@
         "detour": "window"
       },
       {
+        "tag": "podman-dns",
+        "type": "udp",
+        "server": "10.67.0.1",
+        "server_port": 53
+      },
+      {
         "tag": "bootstrap-dns-server",
         "type": "udp",
         "server": "77.88.8.8",
         "server_port": 53
       }
     ],
-    "rules": [],
+    "rules": [
+      {
+        "rule_set": [],
+        "domain_suffix": [
+          ".dns.podman"
+        ],
+        "server": "podman-dns"
+      },
+      {
+        "domain_regex": [
+          "^[^.]+$"
+        ],
+        "server": "podman-dns"
+      }
+    ],
     "final": "dns-server",
-    "strategy": "prefer_ipv4"
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
