@@ -8,7 +8,7 @@ Gateway=10.67.0.1
 DNS=1.1.1.1
 
 Options=no_default_route=true
-PodmanArgs=--route 0.0.0.0/0,10.67.0.2
+PodmanArgs=--route 0.0.0.0/0,10.67.0.2 --route 169.254.1.2/32,10.67.0.1
 
 [Install]
 WantedBy=default.target
