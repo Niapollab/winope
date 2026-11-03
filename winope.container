@@ -21,6 +21,7 @@ PidsLimit=100
 PodmanArgs=--ipc=none
 
 AddCapability=CAP_NET_ADMIN
+AddCapability=CAP_NET_BIND_SERVICE
 AddDevice=/dev/net/tun
 
 Sysctl=net.ipv4.ip_forward=1
